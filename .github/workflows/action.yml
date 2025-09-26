@@ -1,0 +1,29 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - main   # change branch if needed
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_PEM }}" > ~/.ssh/server_key.pem
+          chmod 600 ~/.ssh/server_key.pem
+
+      - name: Deploy on EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/server_key.pem ec2-user@34.201.71.157 << 'EOF'
+            cd learning_AWS
+            git pull origin main
+            npm install
+            pm2 restart 0
+          EOF
