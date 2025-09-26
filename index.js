@@ -13,9 +13,19 @@ app.use(cookieParser());
 app.use(cors());
 app.use(reqResInspector())
 
+app.get("/", (req, res)=> {
+    console.log("Route Route !");
+    return res.json({statusCode: 200, message: "Server health is OK !"});
+})
+
+app.get("/new-route", (req, res)=> {
+    console.log("Route Route !");
+    return res.json({statusCode: 200, message: "New Route is listening !"});
+})
+
 app.get("/test", (req, res)=> {
     console.log("Testing request!");
-    return res.json({statusCode: 200, message: "Request Working fine"});
+    return res.json({statusCode: 200, message: "Request Working fine "});
 })
 
 app.listen(3000, () => {
