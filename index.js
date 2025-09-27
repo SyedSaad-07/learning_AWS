@@ -25,7 +25,7 @@ app.get("/new-route", (req, res)=> {
 
 app.get("/test", (req, res)=> {
     console.log("Testing request!");
-    return res.json({statusCode: 200, message: "Request Working fineeeeeeeeeeeeee "});
+    return res.json({statusCode: 200, message: "Request Working very fine "});
 })
 
 app.listen(3000, () => {

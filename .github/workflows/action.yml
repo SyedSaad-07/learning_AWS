@@ -21,7 +21,7 @@ jobs:
 
       - name: Deploy on EC2
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/server_key.pem ec2-user@34.201.71.157 << 'EOF'
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/server_key.pem ec2-user@54.158.11.160 << 'EOF'
             cd learning_AWS
             git pull origin main
             npm install
